@@ -1,0 +1,19 @@
+version: '3.9'
+services:
+
+  mongo:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: talk
+      MONGO_INITDB_ROOT_PASSWORD: talk3106
+      MONGO_INITDB_DATABASE: talkdb
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    depends_on:
+      - mongo
